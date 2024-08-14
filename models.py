@@ -18,3 +18,8 @@ class RouteRequest(BaseModel):
     num_vehicles: int
     locations: List[Tuple[float,float]]
     depot: Tuple[float,float]
+
+class UserCreate(BaseModel):
+    name: str
+    email: str
+    password: str
