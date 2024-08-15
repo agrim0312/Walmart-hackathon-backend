@@ -44,20 +44,22 @@ def hash_password(password: str):
 
 def get_distance_matrix(locations):
     base_url = "https://api.mapbox.com/directions-matrix/v1/mapbox/driving"
-    coordinates = ";".join([f"{loc[1]},{loc[0]}" for loc in locations])  # Format: longitude,latitude
+    coordinates = ";".join([f"{loc[0]},{loc[1]}" for loc in locations])  # Format: longitude,latitude
+    print("Locations-------------><><><><><><><><------------------------------------",locations)
+    print("Coordinates-------------><><><><><><><><------------------------------------",coordinates)
     
     # Make the request to the Mapbox Matrix API
     response = requests.get(
             f"{base_url}/{coordinates}",
             params={
                 "access_token": "pk.eyJ1IjoiYWdyaW0wMzEyIiwiYSI6ImNscW01eDYweDAyNWwya213cGR2Z2JyZmkifQ.VhMNA0js_M-_c9P3bMmqrw",
-                "annotations": "distance"
+                "annotations": "distance",
             }
         )
     
     if response.status_code == 200:
         result = response.json()
-        print(result)
+        print("MapBox API Result",result)
         return result['distances']  # Matrix of distances in meters
     else:
         raise Exception(f"Error fetching data from Mapbox API: {response.text}")
@@ -110,7 +112,7 @@ def setup_genetic_algorithm(num_locations,evalVRPWrapper):
 
 def calculate_route(num_locations, num_vehicles, locations, depot):
     random.seed(42)  # Seed for reproducibility
-    distance_matrix = get_distance_matrix([depot] + locations)
+    distance_matrix = get_distance_matrix([depot]+locations)
     evalVRPWrapper = create_evaluation_wrapper(num_vehicles, depot, locations, distance_matrix)
     toolbox = setup_genetic_algorithm(num_locations, evalVRPWrapper)
     pop = toolbox.population(n=300)  # Generate initial population
