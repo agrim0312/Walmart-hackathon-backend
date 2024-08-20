@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 import os
 
 # Get the database URL from environment variables
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://radheme:radheradhe@localhost/walmarthackathon")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://vro_bro_user:yQ5EwH7NQHOQ1QDwHLDZiJ8XU3N9Loox@dpg-cr29milsvqrc73clcllg-a/vro_bro")
 
 engine = create_engine(DATABASE_URL)
 
