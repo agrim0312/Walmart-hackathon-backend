@@ -4,8 +4,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 import os
 
+# Get the database URL from environment variables
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://radheme:radheradhe@localhost/walmarthackathon")
 
-engine = create_engine("postgresql://radheme:radheradhe@localhost/walmarthackathon", pool_pre_ping=True)
+engine = create_engine(DATABASE_URL)
 
 SessionLocal = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
 

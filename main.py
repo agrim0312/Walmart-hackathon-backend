@@ -17,7 +17,7 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:3000",  # Allow requests from React or Next.js frontend running on localhost:3000
-    "https://yourdomain.com",  # Add your production frontend domain here
+    "https://vro-bro.vercel.app",  # Add your production frontend domain here
 ]
 
 app.add_middleware(
@@ -30,7 +30,7 @@ app.add_middleware(
 
 #variables
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-SECRET_KEY = "radheme"
+SECRET_KEY = os.getenv("SECRET_KEY", "radheme")
 ALGORITHM = "HS256"
 
 #Routes
