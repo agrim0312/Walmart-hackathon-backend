@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 import os
 
 # Get the database URL from environment variables
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://vro_user:nWJrPOZ6sg2oc3t0wkmiQauHgOOutznG@dpg-crm3hibv2p9s73e825h0-a/vro")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://neondb_owner:Yn83ygiUmPWe@ep-noisy-tooth-a5rgp2nw.us-east-2.aws.neon.tech/neondb?sslmode=require")
 
 engine = create_engine(DATABASE_URL)
 
